@@ -3,6 +3,7 @@
 #include <cstdio>
 
 namespace tsl {
+
 namespace internal {
 
 void abort_message(const char *message, std::source_location const& location) {

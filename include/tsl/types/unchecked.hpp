@@ -4,7 +4,7 @@
 namespace tsl {
 
 struct unchecked_t {};
-inline constexpr unchecked_t unchecked;
+static constexpr unchecked_t unchecked {};
 
 }
 
