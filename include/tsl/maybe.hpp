@@ -468,7 +468,7 @@ using maybe_base_underlying = typename maybe_base<maybe_backend_default<BT>>::va
 
 template<typename BT, typename BU>
 inline constexpr bool operator==(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    TSL_REQUIRES({{ *lhs == *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs == *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs == *rhs;
@@ -478,7 +478,7 @@ inline constexpr bool operator==(maybe_base<BT> const& lhs, maybe_base<BU> const
 
 template<typename BT, typename BU>
 inline constexpr bool operator!=(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    TSL_REQUIRES({{ *lhs != *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs != *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs != *rhs;
@@ -488,7 +488,7 @@ inline constexpr bool operator!=(maybe_base<BT> const& lhs, maybe_base<BU> const
 
 template<typename BT, typename BU>
 inline constexpr bool operator<(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    TSL_REQUIRES({{ *lhs < *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs < *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs < *rhs;
@@ -498,7 +498,7 @@ inline constexpr bool operator<(maybe_base<BT> const& lhs, maybe_base<BU> const&
 
 template<typename BT, typename BU>
 inline constexpr bool operator>(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    TSL_REQUIRES({{ *lhs > *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs > *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs > *rhs;
@@ -508,7 +508,7 @@ inline constexpr bool operator>(maybe_base<BT> const& lhs, maybe_base<BU> const&
 
 template<typename BT, typename BU>
 inline constexpr bool operator<=(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    TSL_REQUIRES({{ *lhs <= *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs <= *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs <= *rhs;
@@ -518,7 +518,7 @@ inline constexpr bool operator<=(maybe_base<BT> const& lhs, maybe_base<BU> const
 
 template<typename BT, typename BU>
 inline constexpr bool operator>=(maybe_base<BT> const& lhs, maybe_base<BU> const& rhs)
-    requires(requires{{ *lhs >= *rhs } -> std::convertible_to<bool>;})
+    TSL_REQUIRES {{ *lhs >= *rhs } -> std::convertible_to<bool>;}
 {
     if (lhs.has_value() && rhs.has_value())
         return *lhs >= *rhs;
