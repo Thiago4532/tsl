@@ -20,7 +20,9 @@ public:
     bad_maybe_access() = default;
     ~bad_maybe_access() override = default;
 
-    const char* what() const noexcept override;
+    const char* what() const noexcept override {
+        return "bad maybe access";
+    }
 };
 
 template<typename BackendType>
