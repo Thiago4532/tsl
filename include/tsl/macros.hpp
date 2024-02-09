@@ -120,7 +120,7 @@
 
 // The following macros are used to avoid repetition of keywords,
 // making the code more readable.
-#define TSL_REQUIRES(expr) requires(requires expr)
+#define TSL_REQUIRES requires requires
 #define TSL_NOEXCEPT(expr) noexcept(noexcept(expr))
 
 #endif // _TSL_MACROS_HPP
