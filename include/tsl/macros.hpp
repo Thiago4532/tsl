@@ -16,6 +16,9 @@
 #define TSL_BOOL(x) (static_cast<bool>(x))
 #define TSL_NOT(x)  (!static_cast<bool>(x))
 
+// TODO: Replace usages of TSL_EXPECT to [[likely]] and [[unlikely]]
+//       Tests in GCC 13.2.1 performed better using __builtin_expect instead
+//       of the standard one, so we are going to use this until it's fixed.
 #if TSL_HAVE_BUILTIN(__builtin_expect)
 #define TSL_EXPECT_TRUE(x) (__builtin_expect(TSL_BOOL(x), true))
 #define TSL_EXPECT_FALSE(x) (__builtin_expect(TSL_BOOL(x), false))
