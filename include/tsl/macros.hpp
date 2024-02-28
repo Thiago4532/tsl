@@ -51,7 +51,8 @@
     (TSL_EXPECT_TRUE(expr) ? static_cast<void>(0) \
                            : TSL_INTERNAL_ASSERT_FAIL(expr))
 #else
-#define TSL_ASSERT(expr) static_cast<void>(0)
+#define TSL_ASSERT(expr) \
+    (false ? static_cast<void>(expr) : static_cast<void>(0))
 #endif
 
 // TSL_HARDENING_ASSERT()
