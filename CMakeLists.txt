@@ -25,6 +25,7 @@ endif ()
 
 set(TSL_SOURCES
   src/tsl/internal/abort.cpp
+  src/tsl/util/exception_type_name.cpp
 )
 
 add_library(tsl ${TSL_SOURCES})

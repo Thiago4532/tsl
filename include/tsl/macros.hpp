@@ -6,9 +6,15 @@
 #include "tsl/config.hpp"
 
 #ifdef __has_builtin
-#define TSL_HAVE_BUILTIN(x) __has_builtin(x)
+#define TSL_HAS_BUILTIN(x) __has_builtin(x)
 #else
-#define TSL_HAVE_BUILTIN(x) 0
+#define TSL_HAS_BUILTIN(x) 0
+#endif
+
+#ifdef __has_include
+#define TSL_HAS_INCLUDE(x) __has_include(x)
+#else
+#define TSL_HAS_INCLUDE(x) 0
 #endif
 
 // Macros to help with boolean expressions
@@ -19,7 +25,7 @@
 // TODO: Replace usages of TSL_EXPECT to [[likely]] and [[unlikely]]
 //       Tests in GCC 13.2.1 performed better using __builtin_expect instead
 //       of the standard one, so we are going to use this until it's fixed.
-#if TSL_HAVE_BUILTIN(__builtin_expect)
+#if TSL_HAS_BUILTIN(__builtin_expect)
 #define TSL_EXPECT_TRUE(x) (__builtin_expect(TSL_BOOL(x), true))
 #define TSL_EXPECT_FALSE(x) (__builtin_expect(TSL_BOOL(x), false))
 #else
@@ -29,7 +35,7 @@
 
 // `TSL_FAST_ABORT()` aborts the program as fast as possible. Without
 // printing a message or doing anything else.
-#if TSL_HAVE_BUILTIN(__builtin_trap)
+#if TSL_HAS_BUILTIN(__builtin_trap)
 #define TSL_FAST_ABORT() __builtin_trap()
 #elif defined(_MSC_VER)
 #define TSL_FAST_ABORT() ::__debugbreak()
@@ -66,9 +72,9 @@
 
 #if defined(__cpp_lib_unreachable) && __cpp_lib_unreachable >= 202202L
 #define TSL_INTERNAL_UNREACHABLE() ::std::unreachable()
-#elif TSL_HAVE_BUILTIN(__builtin_unreachable)
+#elif TSL_HAS_BUILTIN(__builtin_unreachable)
 #define TSL_INTERNAL_UNREACHABLE() __builtin_unreachable()
-#elif TSL_HAVE_BUILTIN(__builtin_assume)
+#elif TSL_HAS_BUILTIN(__builtin_assume)
 #define TSL_INTERNAL_UNREACHABLE() __builtin_assume(false)
 #elif defined(_MSC_VER)
 #define TSL_INTERNAL_UNREACHABLE() __assume(false)
@@ -83,7 +89,7 @@
 
 #ifndef NDEBUG
 #define TSL_ASSUME(expr) do { TSL_ASSERT(expr); } while(0)
-#elif TSL_HAVE_BUILTIN(__builtin_assume)
+#elif TSL_HAS_BUILTIN(__builtin_assume)
 #define TSL_ASSUME(expr) do { __builtin_assume(expr); } while(0)
 #elif defined(_MSC_VER)
 #define TSL_ASSUME(expr) do { __assume(expr); } while(0)
