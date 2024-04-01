@@ -1,12 +1,10 @@
 // Internal header. Do not include directly.
+#pragma once
 
-#ifndef _TSL_INTERNAL_MAYBE_BACKENDS_HPP
-#define _TSL_INTERNAL_MAYBE_BACKENDS_HPP
+// IWYU pragma: private: include "tsl/maybe.hpp"
 
-// Same reason as the header guard in maybe.hpp
-#ifndef _TSL_MAYBE_HPP
 #include "tsl/maybe.hpp"
-#endif
+#include "tsl/types/contracts.hpp"
 
 namespace tsl {
 
@@ -93,5 +91,3 @@ struct maybe_backend_default_t<T> {
 };
 
 }
-
-#endif // _TSL_INTERNAL_MAYBE_BACKENDS_HPP

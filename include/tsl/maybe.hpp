@@ -8,10 +8,8 @@
 #include <utility>
 #include <compare>
 #include <concepts>
-#include "tsl/config.hpp"
 #include "tsl/concepts.hpp"
 #include "tsl/macros.hpp"
-#include "tsl/types/contracts.hpp"
 
 namespace tsl {
 
@@ -565,11 +563,6 @@ inline constexpr maybe<T> make_maybe(std::initializer_list<U> il, Args&&... args
 
 }
 
-// Header guard here is not necessary, but suppresses an error from clangd.
-// It's probably a bug in clangd.
-// Related: https://www.vexforum.com/t/in-included-file-main-file-cannot-be-included-recursively-when-building-a-preamble/105430/3
-#ifndef _TSL_INTERNAL_MAYBE_BACKENDS_HPP
-#include "tsl/internal/maybe_backends.hpp"
-#endif
+#include "tsl/internal/maybe_backends.hpp" // IWYU pragma: export
 
 #endif // _TSL_MAYBE_HPP
